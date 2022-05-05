@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/melanoma-model-demo/static/js/main.ce6604d2.js",
+    "index.html": "/melanoma-model-demo/index.html",
+    "main.ce6604d2.js.map": "/melanoma-model-demo/static/js/main.ce6604d2.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.ce6604d2.js"
+  ]
+}
