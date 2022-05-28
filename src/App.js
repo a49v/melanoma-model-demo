@@ -1,7 +1,9 @@
 import * as React from 'react';
-import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
-import Stack from '@mui/material/Stack';
+import {
+  Container,
+  Link,
+  Stack
+} from '@mui/material'
 
 import Info from './Info.js';
 import Photo from './Photo.js';
