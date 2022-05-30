@@ -48,10 +48,10 @@ const PhotoUpload = ({ onUpload }) => {
   );
 }
 
-export default function Photo() {
+const Photo = ({ onSelect }) => {
   const [photo, setPhoto] = useState(null)
 
-  const handleLoad = f => setPhoto(f)
+  const handleLoad = f => { setPhoto(f) ; onSelect(f) }
 
   return (
     <div>
@@ -71,3 +71,5 @@ export default function Photo() {
     </div>
   );
 }
+
+export default Photo;
