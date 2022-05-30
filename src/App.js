@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {
   Container,
   Link,
@@ -10,6 +9,7 @@ import Photo from './Photo.js';
 
 
 export default function App() {
+
   return (
     <Container maxWidth="sm">
       <Stack spacing={3} my={5}>

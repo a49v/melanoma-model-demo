@@ -8,19 +8,21 @@ import {
 import { styled } from '@mui/material/styles';
 import { InsertPhoto } from '@mui/icons-material';
 
+
 const Input = styled('input')({ display: 'none' });
 
 const Img = ({ src }) => {
-  console.log(src)
-  if (src) {
-    return <img src={src} alt="Your submitted picture"/>
-  }
+  const divStyle = src ?
+        {
+          backgroundImage: `url(${src})`,
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'contain',
+          height: 250
+        } :
+        { backgroundColor: 'gray', height: 250 }
 
-  return (
-    <Avatar>
-      <InsertPhoto/>
-    </Avatar>
-  )
+  return <div style={divStyle} />
 }
 
 const PhotoUpload = ({ onUpload }) => {
@@ -46,9 +48,6 @@ const PhotoUpload = ({ onUpload }) => {
   );
 }
 
-
-// https://reactjs.org/docs/uncontrolled-components.html#the-file-input-tag
-// https://www.pluralsight.com/guides/how-to-use-a-simple-form-submit-with-files-in-react
 export default function Photo() {
   const [photo, setPhoto] = useState(null)
 
@@ -62,11 +61,8 @@ export default function Photo() {
 
       <Card>
         <CardMedia>
-          <Img src={photo ? URL.createObjectURL(photo) : ""} />
+          <Img src={photo ? URL.createObjectURL(photo) : ""}/>
         </CardMedia>
-
-        <CardContent>
-        </CardContent>
 
         <CardActions>
           <PhotoUpload onUpload={handleLoad}/>
