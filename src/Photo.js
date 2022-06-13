@@ -20,7 +20,7 @@ const Img = ({ src }) => {
           backgroundSize: 'contain',
           height: 250
         } :
-        { backgroundColor: 'gray', height: 250 }
+        { backgroundColor: '#ccc', height: 250 }
 
   return <div style={divStyle} />
 }
@@ -31,20 +31,18 @@ const PhotoUpload = ({ onUpload }) => {
   const onSelect = () => onUpload(fileInput.current.files[0])
 
   return (
-    <div>
-      <label htmlFor="contained-button-file">
-        <Input
-          accept="image/*"
-          id="contained-button-file"
-          onChange={onSelect}
-          ref={fileInput}
-          type="file"
-        />
-        <Button variant="contained" component="span">
-          Elige una fotografía
-        </Button>
-      </label>
-    </div>
+    <label htmlFor="contained-button-file" style={{ width: '100%' }}>
+      <Input
+        accept="image/*"
+        id="contained-button-file"
+        onChange={onSelect}
+        ref={fileInput}
+        type="file"
+      />
+      <Button color="secondary" fullWidth variant="outlined" component="span">
+        Choose a picture
+      </Button>
+    </label>
   );
 }
 
@@ -54,9 +52,9 @@ const Photo = ({ onSelect }) => {
   const handleLoad = f => { setPhoto(f) ; onSelect(f) }
 
   return (
-    <div>
+    <div style={{ marginBottom: '1em' }}>
       <Typography variant="h4" component="h1" gutterBottom>
-        Fotografía
+        Melanoma predictor
       </Typography>
 
       <Card>

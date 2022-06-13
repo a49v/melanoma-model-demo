@@ -1,13 +1,18 @@
 import { createRef, useEffect, useState } from 'react'
 import {
   Alert,
+  AppBar,
   Button,
   Container,
   Dialog, DialogContent, DialogContentText, DialogActions, DialogTitle,
+  Grid,
   Link,
   LinearProgress,
-  Stack
+  Stack,
+  Toolbar,
+  Typography
 } from '@mui/material'
+import CopyrightIcon from '@mui/icons-material/Copyright';
 import * as tmImage from '@teachablemachine/image'
 
 import Info from './Info.js';
@@ -46,33 +51,64 @@ export default function App() {
     setLoading(false)
 
     setDialogOpen(true)
-    setDialogText(`Probabilidad de melanoma: ${prediction.probability}`)
+    setDialogText(`Probability of melanoma: ${prediction.probability * 100} %`)
   }
 
   return (
-    <Container maxWidth="sm">
-      <Stack spacing={3} my={5}>
-        <Info/>
-        <Photo onSelect={handlePhotoSelect}/>
-        <Button
-          variant="contained"
-          onClick={runModel}
-          disabled={!photoBitmap}
+    <Container fixed>
+      <AppBar>
+        <Typography
+          variant="h4"
+          align="center"
+          style={{ margin: "1rem" }}
         >
-          Correr predicción
-        </Button>
-        { loading ? <LinearProgress/> : null }
+          Design in Biomedical Engineering
+        </Typography>
+      </AppBar>
+      <Toolbar/>
+
+      <Grid
+        container
+        alignItems="center"
+        spacing={3}
+        my={10}
+      >
+
+        <Grid item xs={12} md={6}>
+          <Info/>
+        </Grid>
+
+        <Grid item xs={12} md={6}>
+          <Photo onSelect={handlePhotoSelect}/>
+          <Button
+            color="secondary"
+            fullWidth
+            variant="outlined"
+            onClick={runModel}
+            disabled={!photoBitmap}
+          >
+            Run prediction
+          </Button>
+
+          { loading ? <LinearProgress/> : null }
+        </Grid>
 
         <Dialog open={dialogOpen} onClose={closeDialog}>
-          <DialogTitle>Resultado</DialogTitle>
+          <DialogTitle>Result</DialogTitle>
           <DialogContent>
             <DialogContentText>{ dialogText }</DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button variant="contained" onClick={closeDialog}>Cerrar</Button>
+            <Button variant="contained" onClick={closeDialog}>Close</Button>
           </DialogActions>
         </Dialog>
-      </Stack>
+      </Grid>
+
+      <AppBar color="transparent" position="fixed" sx={{ top: 'auto', bottom: 0 }}>
+        <Typography align="center" variant="body2">
+          Corona, Herbozo, De La Cruz, Vela <CopyrightIcon fontSize="small"/>
+        </Typography>
+      </AppBar>
     </Container>
   );
 }
